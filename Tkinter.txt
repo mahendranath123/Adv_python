@@ -1,0 +1,166 @@
+
+Python - GUI Programming
+Python provides various options for developing graphical user interfaces (GUIs). There are many other interfaces available, which you can find them on the net. Tkinter is one of the easiest way & popular to use.
+Tkinter − Tkinter is the Python interface to the Tk GUI toolkit shipped with Python.
+
+Tkinter Programming
+Tkinter is the standard GUI library for Python. Python when combined with Tkinter provides a fast and easy way to create GUI applications. Tkinter provides a powerful object-oriented interface to the Tk GUI toolkit.
+
+Creating a GUI application using Tkinter is an easy task. All you need to do is perform the following steps.
+
+1. Import the Tkinter module.
+
+2. Create the GUI application main window.
+
+3. Add one or more of the above-mentioned widgets to the GUI application.
+
+4. Enter the main event loop to take action against each event triggered by the user.
+
+# note that module name has changed from Tkinter in Python 2 to tkinter in Python 3
+import tkinter
+top = tkinter.Tk()
+
+# Code to add widgets will go here...
+top.mainloop()
+
+When the program becomes more complex, using an object-oriented programming approach makes the code more organized.
+
+import tkinter as tk
+class App(tk.Tk):
+   def __init__(self):
+      super().__init__()
+
+app = App()
+app.mainloop()
+
+
+Tkinter Widgets
+Tkinter provides various controls, such as buttons, labels and text boxes used in a GUI application. These controls are commonly called widgets.
+
+There are currently 15 types of widgets in Tkinter. We present these widgets as well as a brief description in the following table −
+
+Sr.No.	Operator & Description
+1	Button
+The Button widget is used to display the buttons in your application.
+
+2	Canvas
+The Canvas widget is used to draw shapes, such as lines, ovals, polygons and rectangles, in your application.
+
+3	Checkbutton
+The Checkbutton widget is used to display a number of options as checkboxes. The user can select multiple options at a time.
+
+4	Entry
+The Entry widget is used to display a single-line text field for accepting values from a user.
+
+5	Frame
+The Frame widget is used as a container widget to organize other widgets.
+
+6	Label
+The Label widget is used to provide a single-line caption for other widgets. It can also contain images.
+
+7	Listbox
+The Listbox widget is used to provide a list of options to a user.
+
+8	Menubutton
+The Menubutton widget is used to display menus in your application.
+
+9	Menu
+The Menu widget is used to provide various commands to a user. These commands are contained inside Menubutton.
+
+10	Message
+The Message widget is used to display multiline text fields for accepting values from a user.
+
+11	Radiobutton
+The Radiobutton widget is used to display a number of options as radio buttons. The user can select only one option at a time.
+
+12	Scale
+The Scale widget is used to provide a slider widget.
+
+13	Scrollbar
+The Scrollbar widget is used to add scrolling capability to various widgets, such as list boxes.
+
+14	Text
+The Text widget is used to display text in multiple lines.
+
+15	Toplevel
+The Toplevel widget is used to provide a separate window container.
+
+16	Spinbox
+The Spinbox widget is a variant of the standard Tkinter Entry widget, which can be used to select from a fixed number of values.
+
+17	PanedWindow
+A PanedWindow is a container widget that may contain any number of panes, arranged horizontally or vertically.
+
+18	LabelFrame
+A labelframe is a simple container widget. Its primary purpose is to act as a spacer or container for complex window layouts.
+
+19	tkMessageBox
+This module is used to display message boxes in your applications.
+
+1.Button
+The Button widget is used to display the buttons in your application.
+
+The Button widget is used to add buttons in a Python application. These buttons can display text or images that convey the purpose of the buttons. You can attach a function or a method to a button which is called automatically when you click the button.
+Syntax
+Here is the simple syntax to create this widget −
+w = Button ( master, option=value, ... )
+
+from tkinter import *
+from tkinter import messagebox
+top = Tk()
+top.geometry("100x100")
+def helloworld():
+   msg=messagebox.showinfo( "Hello Python", "Hello World")
+B = Button(top, text ="Hello", command = helloworld)
+B.place(x=50,y=50)
+top.mainloop()
+
+6. Label
+This widget implements a display box where you can place text or images. The text displayed by this widget can be updated at any time you want.
+
+It is also possible to underline part of the text (like to identify a keyboard shortcut) and span the text across multiple lines.
+
+Syntax
+Here is the simple syntax to create this widget −
+
+w = Label ( master, option, ... )
+
+from tkinter import *
+root = Tk()
+var = StringVar()
+label = Label( root, textvariable=var, relief=RAISED )
+var.set("I am using Python GUI!")
+label.pack()
+root.mainloop()
+
+14.	Text
+Tkinter Text
+Text widgets provide advanced capabilities that allow you to edit a multiline text and format the way it has to be displayed, such as changing its color and font.
+
+You can also use elegant structures like tabs and marks to locate specific sections of the text, and apply changes to those areas. Moreover, you can embed windows and images in the text because this widget was designed to handle both plain and formatted text.
+
+Syntax
+Here is the simple syntax to create this widget −
+w = Text ( master, option, ... )
+
+Parameters
+master − This represents the parent window
+options − Here is the list of most commonly used options for this widget. These options can be used as key-value pairs separated by commas.
+
+from tkinter import *
+root = Tk()
+text = Text(root)
+	# insert(index [,string]...)
+	# This method inserts strings at the specified index location
+text.insert(INSERT, "Hello.....")
+text.insert(END, "Bye Bye.....")
+text.pack()
+	# tag_add(tagname, startindex[,endindex] ...)
+	# This method tags either the position defined by startindex, or a range delimited by the          positions startindex and endindex.
+text.tag_add("here", "1.0", "1.4")
+text.tag_add("start", "1.8", "1.13")
+	# tag_config
+	# You can use this method to configure the tag properties, which include, justify(center, left, or right), tabs(this property has the same functionality of the Text widget tabs's property), and underline(used to underline the tagged text).
+text.tag_config("here", background="yellow", foreground="blue")
+text.tag_config("start", background="black", foreground="green")
+root.mainloop()

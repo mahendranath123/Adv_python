@@ -1,0 +1,191 @@
+
+SQLITE - CONNECTING TO THE DATABASE & CREATING THE TABLE
+
+import sqlite3
+conn=sqlite3.connect('mydb1.db')
+cur=conn.cursor()
+# qry=''''''
+qry='''
+CREATE TABLE Employee (
+EmpID INTEGER PRIMARY KEY AUTOINCREMENT,
+FIRST_NAME TEXT (20),
+LAST_NAME TEXT(20),
+AGE INTEGER,
+SEX TEXT(1),
+INCOME FLOAT
+);
+'''
+try:
+   cur.execute(qry)
+   print ('Table created successfully')
+except:
+   print ('error in creating table')
+
+# qry = '''show tables;'''
+# cur.execute(qry)
+conn.close()
+
+
+SQLITE - CONNECTING TO THE DATABASE & INSERTING INTO THE TABLE
+
+
+import sqlite3
+conn=sqlite3.connect('mydb1.db')
+cur=conn.cursor()
+qry="""INSERT INTO EMPLOYEE(FIRST_NAME,
+   LAST_NAME, AGE, SEX, INCOME)
+   VALUES('Mac','Mohan',20,'M',2000)"""
+try:
+   cur.execute(qry)
+   conn.commit()
+   print ('Record inserted successfully')
+except:
+   conn.rollback()
+print ('error in INSERT operation')
+conn.close()
+
+
+CRUD Operations
+The abbreviation CRUD expands to Create, Read, Update and Delete. These four are fundamental operations in a database. In the sample database, we will create it, and do some operations. Let’s discuss these operations one by one with the help of examples.
+
+CREATE
+The create command is used to create the table in database. First we will go through its syntax then understand with an example.
+
+Syntax: CREATE TABLE table_name ( Attr1 Type1, Attr2 Type2, … , Attrn Typen ) ;
+
+In this example, we will create a table named “gfg” with three attributes:
+
+name
+points
+accuracy
+
+
+# Python code to create a relation  
+# using SQLite3 
+  
+# import the sqlite3 package 
+import sqlite3   
+  
+# create a database named backup 
+cnt = sqlite3.connect("backup.db")   
+  
+# create a table named gfg 
+cnt.execute('''CREATE TABLE gfg( NAME TEXT, POINTS INTEGER, ACCURACY REAL);''')
+cnt.close()
+
+INSERT
+This refers to the insertion of new data into the table. Data is inserted in the form of a tuple. The number of attributes in the tuple must be equal to that defined in the relation schema while creating the table.
+
+1. To insert attributes in the order specified in the relation schema:
+Syntax: INSERT INTO tableName VALUES ( value1, value2, … valuen )
+ 
+2.To insert attributes in the order specified in the relation schema or in a different order:
+INSERT INTO tableName ( Attribute1, Attribute3, Attribute2 . . . ) VALUES ( value1, value3, value2 . . . )
+
+The program below demonstrates the addition of three tuples to the gfg relation that was created earlier.
+
+# Python3 Code to insert data into 
+# the database 
+  
+# Insert three tuples into the gfg table 
+# insert in default order 
+cnt.execute('''INSERT INTO gfg VALUES('Count Inversion',20,80.5);''') 
+  
+# insert in different order 
+cnt.execute('''INSERT INTO gfg(ACCURACY, POINTS, NAME) VALUES(90.5, 15, 'Kadanes Algo');''') 
+  
+cnt.execute('''INSERT INTO gfg(NAME, ACCURACY, POINTS) VALUES('REVERSE STR', 100, 5);''') 
+  
+# commit changes to the database 
+cnt.commit()
+
+READ
+This refers to reading data from a database. A read statement has three clauses:
+
+SELECT: Takes as the predicate the attributes to be queried, use * for all attributes.
+FROM: Takes as the predicate a relation.
+WHERE: Takes as the predicate a condition, this is not compulsory.
+After executing a read statement in python SQLite3, an iterable cursor object is returned. This can be used to print data.
+
+Example: SELECT NAME, POINTS, ACCURACY FROM gfg WHERE ACCURACY>85;
+
+The program below demonstrates the usage of the read statement.
+
+# Python3 code to read data from a table 
+  
+print('Name, Points and Accuracy from records with accuracy greater than 85') 
+  
+cursor = cnt.execute('''SELECT * FROM gfg WHERE ACCURACY>85;''') 
+  
+# print data using the cursor object 
+for i in cursor: 
+    print(i[0]+"    "+str(i[1])+"   "+str(i[2])) 
+  
+print('')  # Print new line 
+  
+print('Name, Accuracy from records with accuracy greater than 85') 
+  
+cursor = cnt.execute('''SELECT NAME, ACCURACY FROM gfg WHERE ACCURACY>85;''') 
+  
+# print data using the cursor object 
+for i in cursor: 
+    print(i[0]+"    "+str(i[1]))
+
+UPDATE
+This refers to the updating of tuple values already present in the table.
+
+Syntax: UPDATE tableName SET Attribute1 = Value1 , Attribute2 = Value2 , . . . WHERE condition;
+The WHERE clause must be included, else all records in the table will be updated.
+
+EXAMPLE: UPDATE gfg SET POINTS=POINTS+5 WHERE POINTS<20;
+
+The program below demonstrates the usage of the update statement.
+
+# Python3 code to update records in a database 
+  
+# Print records before updation 
+cursor = cnt.execute('''SELECT * FROM gfg''') 
+print('Before Updation') 
+for i in cursor: 
+    print(i[0]+"    "+str(i[1])+"    "+str(i[2])) 
+  
+print('')  # print a newline 
+  
+# Execute an Update statement 
+cnt.execute('''UPDATE gfg SET POINTS=POINTS+5 WHERE 
+POINTS<20;''') 
+  
+cursor = cnt.execute('''SELECT * FROM gfg''') 
+print('After Updation') 
+for i in cursor: 
+    print(i[0]+"    "+str(i[1])+"    "+str(i[2])) 
+
+DELETE
+This refers to the deletion of the tuple present in the table.
+
+SYNTAX: DELETE FROM tableName WHERE condition
+
+If WHERE clause is not used then all the records will be deleted.
+
+EXAMPLE: DELETE FROM gfg WHERE ACCURACY>91
+
+The program below demonstrates the usage of the delete statement.
+
+# Python3 code to delete records from database 
+  
+# Print records before deletion 
+cursor = cnt.execute('''SELECT * FROM gfg''') 
+print('Before Deletion') 
+for i in cursor: 
+    print(i[0]+"    "+str(i[1])+"    "+str(i[2])) 
+  
+print('')  # print a newline 
+  
+# Execute a delete statement 
+cnt.execute('''DELETE FROM gfg WHERE ACCURACY>91;''') 
+  
+cursor = cnt.execute('''SELECT * FROM gfg''') 
+print('After Deletion') 
+for i in cursor: 
+    print(i[0]+"    "+str(i[1])+"    "+str(i[2])) 
+

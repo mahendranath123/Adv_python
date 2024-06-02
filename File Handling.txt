@@ -1,0 +1,217 @@
+	Python File Open
+File handling is an important part of any web application.
+
+Python has several functions for creating, reading, updating, and deleting files.
+
+File Handling
+The key function for working with files in Python is the open() function.
+
+The open() function takes two parameters; filename, and mode.
+
+There are four different methods (modes) for opening a file:
+
+"r" - Read - Default value. Opens a file for reading, error if the file does not exist
+
+"a" - Append - Opens a file for appending, creates the file if it does not exist
+
+"w" - Write - Opens a file for writing, creates the file if it does not exist
+
+"x" - Create - Creates the specified file, returns an error if the file exists
+
+In addition you can specify if the file should be handled as binary or text mode
+
+"t" - Text - Default value. Text mode
+
+"b" - Binary - Binary mode (e.g. images)
+
+Syntax
+To open a file for reading it is enough to specify the name of the file:
+
+f = open("test.txt")
+The code above is the same as:
+
+f = open("test.txt", "rt")
+Because "r" for read, and "t" for text are the default values, you do not need to specify them.
+
+
+	File Handling in Python
+File handling in Python is a powerful and versatile tool that can be used to perform a wide range of operations. However, it is important to carefully consider the advantages and disadvantages of file handling when writing Python programs, to ensure that the code is secure, reliable, and performs well.
+
+In this article we will explore: 
+Python File Handling, 
+Advantages, 
+Disadvantages and 
+How open, write and append functions works in python file.
+
+	Python File Handling
+Python supports file handling and allows users to handle files i.e., to read and write files, along with many other file handling options, to operate on files. The concept of file handling has stretched over various other languages, but the implementation is either complicated or lengthy, like other concepts of Python, this concept here is also easy and short. Python treats files differently as text or binary and this is important. Each line of code includes a sequence of characters, and they form a text file. Each line of a file is terminated with a special character, called the EOL or End of Line characters like comma {,} or newline character. It ends the current line and tells the interpreter a new one has begun. Let’s start with the reading and writing files. 
+
+	Advantages of File Handling in Python
+Versatility: File handling in Python allows you to perform a wide range of operations, such as creating, reading, writing, appending, renaming, and deleting files.
+Flexibility: File handling in Python is highly flexible, as it allows you to work with different file types (e.g. text files, binary files, CSV files, etc.), and to perform different operations on files (e.g. read, write, append, etc.).
+User–friendly: Python provides a user-friendly interface for file handling, making it easy to create, read, and manipulate files.
+Cross-platform: Python file-handling functions work across different platforms (e.g. Windows, Mac, Linux), allowing for seamless integration and compatibility.
+
+	Disadvantages of File Handling in Python
+Error-prone: File handling operations in Python can be prone to errors, especially if the code is not carefully written or if there are issues with the file system (e.g. file permissions, file locks, etc.).
+Security risks: File handling in Python can also pose security risks, especially if the program accepts user input that can be used to access or modify sensitive files on the system.
+Complexity: File handling in Python can be complex, especially when working with more advanced file formats or operations. Careful attention must be paid to the code to ensure that files are handled properly and securely.
+Performance: File handling operations in Python can be slower than other programming languages, especially when dealing with large files or performing complex operations.
+
+For this article, we will consider the following “test.txt” file as an example.
+
+Hello world
+testing file
+123 456
+
+Python File Open
+Before performing any operation on the file like reading or writing, first, we have to open that file. For this, we should use Python’s inbuilt function open() but at the time of opening, we have to specify the mode, which represents the purpose of the opening file.
+
+f = open(filename, mode)
+Where the following mode is supported:
+
+r: open an existing file for a read operation.
+w: open an existing file for a write operation. If the file already contains some data, then it will be overridden but if the file is not present then it creates the file as well.
+a:  open an existing file for append operation. It won’t override existing data.
+r+:  To read and write data into the file. The previous data in the file will be overridden.
+w+: To write and read data. It will override existing data.
+a+: To append and read data from the file. It won’t override existing data.
+
+Exercises:
+https://www.geeksforgeeks.org/file-handling-python/
+Example 1: The open command will open the Python file in the read mode and the for loop will print each line present in the file.
+
+# a file named "test", will be opened with the reading mode.
+file = open('test.txt', 'r')
+
+# This will print every line one by one in the file
+for each in file:
+	print (each)
+
+output:
+Hello world
+testing file
+123 456
+
+Example 2: 
+In this example, we will extract a string that contains all characters in the Python file then we can use file.read(). 
+
+# Python code to illustrate read() mode
+file = open("test.txt", "r") 
+print (file.read())
+
+output:
+Hello world
+testing file
+123 456
+
+Example 3: In this example, we will see how we can read a file using the with statement in Python.
+
+# Python code to illustrate with()
+with open("test.txt") as file: 
+	data = file.read() 
+
+print(data)
+
+output:
+Hello world
+testing file
+123 456
+
+Example 4: Another way to read a file is to call a certain number of characters like in the following code the interpreter will read the first five characters of stored data and return it as a string: 
+
+# Python code to illustrate read() mode character wise
+file = open("test.txt", "r")
+print (file.read(5))
+
+output:
+Hello
+
+Example 5: We can also split lines while reading files in Python. The split() function splits the variable when space is encountered. You can also split using any characters as you wish.
+
+# Python code to illustrate split() function
+with open("test.txt", "r") as file:
+	data = file.readlines()
+	for line in data:
+		word = line.split()
+		print (word)
+
+['Hello', 'world']
+['testing', 'file'] or ['testingfile']
+['123', '456']
+
+
+https://www.freecodecamp.org/news/file-handling-in-python/
+
+#This program shows how to write data in a text file.
+
+file = open("myfile.txt","w")
+L = ["This is Lagos \n","This is Python \n","This is Fcc \n"]
+
+# i assigned ["This is Lagos \n","This is Python \n","This is Fcc \n"] to #variable L, you can use any letter or word of your choice.
+# Variable are containers in which values can be stored.
+# The \n is placed to indicate the end of the line.
+
+file.write("Hello There \n")
+file.writelines(L)
+file.close()
+
+# Use the close() to change file access modes 
+
+Example:
+The program below shows more examples of ways to read and write data in a text file. Each line of code has comments to help you understand what's going on:
+
+# Program to show various ways to read and
+# write data in a text file.
+
+file = open("myfile.txt","w")
+L = ["This is Lagos \n","This is Python \n","This is Fcc \n"]
+
+#i assigned ["This is Lagos \n","This is Python \n","This is Fcc \n"]
+#to variable L
+  
+#The \n is placed to indicate End of Line
+
+file.write("Hello There \n")
+file.writelines(L)
+file.close()
+# use the close() to change file access modes
+
+
+
+file = open("myfile.txt","r+") 
+print("Output of the Read function is ")
+print(file.read())
+print()
+  
+# The seek(n) takes the file handle to the nth
+# byte from the start.
+file.seek(0) 
+  
+print( "The output of the Readline function is ")
+print(file.readline()) 
+print()
+  
+file.seek(0)
+  
+# To show difference between read and readline
+
+print("Output of Read(12) function is ") 
+print(file.read(12))
+print()
+
+file.seek(0)
+  
+print("Output of Readline(8) function is ") 
+print(file.readline(8))
+  
+file.seek(0)
+# readlines function
+print("Output of Readlines function is ") 
+print(file.readlines()) 
+print()
+file.close()
+
+This is the output of the above code when run in the shell. I assigned "This is Lagos",  "This is Python", and "This is Fcc" to "L" and then asked it to print using the ''file.read''  function.
+
+The code above shows that the "readline()" function is returning the letter based on the number specified to it, while the "readlines()" function is returning every string assigned to "L" including the \n. That is, the "readlines()" function will print out all data in the file.

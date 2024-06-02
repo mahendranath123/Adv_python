@@ -1,0 +1,187 @@
+assert
+Python's assert statement is a debugging tool that tests a specific condition in the code. If the condition is met, the program continues as usual. However, if the condition is not met, the program raises an AssertionError.
+
+This mechanism helps to identify and manage potential errors in the code.
+
+x = 10
+assert x == 10
+# This will pass as x is indeed 10
+x = 5
+assert x == 10, 'x is not 10!'
+# This will raise an AssertionError as x is not 10
+
+The assert statement in Python is fundamentally a debugging tool that tests a specific condition. If the condition holds true, the program continues to run without any interruption. However, if the condition turns out to be false, the assert statement halts the program and throws an AssertionError exception.
+
+This mechanism is essential for detecting and managing potential errors in your code.
+
+The syntax of the assert statement is quite simple. It involves writing assert followed by the condition you want to test, and optionally, a string to display if the condition is false.
+
+assert <condition>
+assert <condition>,<error message>
+
+Consider this basic example of the assert statement:
+
+x = 10
+assert x == 10
+
+In this scenario, the assert statement doesn’t interfere because the condition is true (x is indeed 10).
+
+However, if we modify the value of x to 5, the assert statement will raise an AssertionError:
+
+x = 5
+assert x == 10, 'x is not 10!'
+
+The assert statement proves particularly useful in debugging and testing. It allows you to establish conditions that you anticipate in your code, and to detect scenarios where these conditions are not met. This greatly aids in catching and rectifying bugs, thereby enhancing the robustness and error-free nature of your Python code.
+
+Advanced Usage: Python Assert
+The assert statement extends beyond simple condition-checking, offering a suite of advanced uses that can aid in crafting cleaner, more efficient, and robust Python code. Let’s delve into these advanced use cases.
+
+Assert in Complex Code Structures
+Imagine you’re scripting a function that operates on a list of integers. You anticipate the list to always contain a minimum of one element. An assert statement can be employed to validate this:
+
+ def calculate_average(numbers):
+     assert len(numbers) > 0, 'List is empty!'
+     return sum(numbers) / len(numbers)
+Python
+In this scenario, if an empty list is passed to the function, the assert statement will raise an AssertionError, halting any further execution and potential errors.
+
+Exception Handling with Assert
+The assert statement serves as a potent tool for exception handling. It enables early detection and management of potential errors during code execution, thereby simplifying debugging and maintenance.
+
+It’s crucial to remember that assert should not be employed for data validation or to manage runtime errors. It is a debugging aid, not a mechanism for handling runtime errors.
+
+Below is a Python code snippet which demonstrates how assert can be used for exception handling.
+
+This example checks if a number is not negative:
+
+def enter_positive_number(num):
+    # This will raise AssertionError if num is less than 0
+    assert num >= 0, "Only positive numbers are allowed"
+
+    return num * num
+
+try:
+    num = int(input("Enter a number: "))
+    print(enter_positive_number(num))
+except AssertionError as e:
+    print(e)
+except ValueError:
+    print("Please enter a valid integer.")
+Python
+In the above example, if a negative number is entered, assert raises an AssertionError with the message “Only positive numbers are allowed”. If a non-integer value is entered, a ValueError is raised, which is then handled in the second exception block.
+
+The assert statement therefore allows us to handle exceptions in situations where we want to ensure certain conditions are met.
+
+Why Use Python Assert Statement?
+In Python, the assert statement is a potent debugging tool that can assist in identifying mistakes and ensuring that your code is operating as intended. Here are several justifications for using assert:
+
+Debugging: Assumptions made by your code can be verified with the assert statement. You may rapidly find mistakes and debug your program by placing assert statements throughout your code.
+Documentation: The use of assert statements in your code might act as documentation. Assert statements make it simpler for others to understand and work with your code since they explicitly describe the assumptions that your code is making.
+Testing: In order to ensure that certain requirements are met, assert statements are frequently used in unit testing. You can make sure that your code is working properly and that any changes you make don’t damage current functionality by incorporating assert statements in your tests.
+Security: You can use assert to check that program inputs comply with requirements and validate them. By doing so, security flaws like buffer overflows and SQL injection attacks may be avoided.
+
+Programs:
+# initializing number
+a = 4
+b = 0
+
+# using assert to check for 0
+print("The value of a / b is : ")
+assert b != 0
+print(a / b)
+--
+# initializing number
+a = 4
+b = 0
+
+# using assert to check for 0
+print("The value of a / b is : ")
+assert b != 0, "Zero Division Error"
+print(a / b)
+--
+# Function to calculate the area of a rectangle
+def calculate_rectangle_area(length, width):
+	# Assertion to check that the length and width are positive
+	assert length > 0 and width > 0, "Length and width"+ \
+				"must be positive"
+	# Calculation of the area
+	area = length * width
+	# Return statement
+	return area
+
+
+# Calling the function with positive inputs
+area1 = calculate_rectangle_area(5, 6)
+print("Area of rectangle with length 5 and width 6 is", area1)
+
+# Calling the function with negative inputs
+area2 = calculate_rectangle_area(-5, 6)
+print("Area of rectangle with length -5 and width 6 is", area2)
+--
+# Initializing variables
+x = 10
+y = 20
+
+# Asserting a boolean condition
+assert x < y
+
+# Printing the values of x and y
+print("x =", x)
+print("y =", y)
+--
+# Initializing variables
+a = "hello"
+b = 42
+
+# Asserting the type of a variable
+assert type(a) == str
+assert type(b) == int
+
+# Printing the values of a and b
+print("a =", a)
+print("b =", b)
+--
+# Initializing a dictionary
+my_dict = {"apple": 1, "banana": 2, "cherry": 3}
+
+# Asserting the contents of the dictionary
+assert my_dict["apple"] == 1
+assert my_dict["banana"] == 2
+assert my_dict["cherry"] == 3
+
+# Printing the dictionary
+print("My dictionary contains the following key-value pairs:", my_dict)
+--
+# Python 3 code to demonstrate 
+# working of assert 
+# Application
+
+# initializing list of foods temperatures
+batch = [ 40, 26, 39, 30, 25, 21]
+
+# initializing cut temperature
+cut = 26
+
+# using assert to check for temperature greater than cut
+for i in batch:
+	assert i >= 26, "Batch is Rejected"
+	print (str(i) + " is O.K" )
+--
+
+--
+# def avg(marks):
+#     assert len(marks) != 0
+#     return sum(marks)/len(marks)
+
+# mark1 = []
+# print("Average of mark1:",avg(mark1))
+--
+def avg(marks):
+    assert len(marks) != 0,"List is empty."
+    return sum(marks)/len(marks)
+
+mark2 = [55,88,78,90,79]
+print("Average of mark2:",avg(mark2))
+
+mark1 = []
+print("Average of mark1:",avg(mark1))

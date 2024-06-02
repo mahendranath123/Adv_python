@@ -1,0 +1,23 @@
+import sqlite3
+conn=sqlite3.connect('..mydb.db')
+cur=conn.cursor()
+# qry=''''''
+qry='''
+CREATE TABLE Employee2 (
+EmpID INTEGER PRIMARY KEY AUTOINCREMENT,
+FIRST_NAME TEXT (20),
+LAST_NAME TEXT(20),
+AGE INTEGER,
+SEX TEXT(1),
+INCOME FLOAT
+);
+'''
+try:
+   cur.execute(qry)
+   print ('Table created successfully')
+except:
+   print ('error in creating table')
+
+# qry = '''show tables;'''
+# cur.execute(qry)
+conn.close()
